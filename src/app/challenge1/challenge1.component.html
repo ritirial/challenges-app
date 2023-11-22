@@ -1,0 +1,20 @@
+<h3>Challenge 1</h3>
+
+<p>Datos:</p>
+
+<label>Arreglo de datos</label>
+<select id="datosSelect" [(ngModel)]="datos">
+    <option value="1">[15.0, 69.9, 6.5, 22.4, 28.4, 65.9, 19.4, 198.7, 38.8, 138.2]</option>
+    <option value="2">[160, 591, 114, 229, 230, 270, 128, 1657, 624, 1503]</option>
+</select>
+
+<br>
+
+<p>Operaciones:</p>
+<button id="mediaButton" type="button" (click)="media()">Media</button>
+<button id="desvButton" type="button" (click)="desv()">Desviación Estandar</button>
+
+<br>
+
+<p>Resultado:</p>
+<p id="resultElement">{{ result }}</p>
