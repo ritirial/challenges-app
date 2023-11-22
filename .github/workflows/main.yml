@@ -1,0 +1,89 @@
+name: App CI
+
+on:
+  push:
+    branches: [ main, develop, hotfixes, release, deploy ]
+  pull_request:
+    branches: [ main, develop, hotfixes, release, deploy ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      
+      - name: Setup
+        run: npm ci
+  
+      - name: Test
+        run: |
+          npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+  
+      - name: build angular, output in dist/
+        run: |
+          CI=false npm run build
+            
+      - name: show dir
+        run: |
+          ls -la 
+            
+      - name: download, run httpd image, container name serving_base
+        run: |
+          docker run -d --name serving_base httpd
+          
+      - name: cp angular build to container
+        run: |
+          docker cp dist/testing-calculator/.  serving_base:/usr/local/apache2/htdocs
+          
+      - name: Build the custom Docker image
+        run: docker commit --change "ENV MODEL_NAME ${{secrets.MODEL_NAME}}" serving_base ${{ secrets.DOCKER_USER }}/${{ secrets.MODEL_NAME }}:${{ github.sha }}
+  
+      - name: show docker images
+        run: docker images
+  
+      - name: docker login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
+          
+      - name: Docker Push
+        run: docker push ${{secrets.DOCKER_USER}}/${{secrets.MODEL_NAME}}:${{github.sha}}
+  
+      - name: update docker user in k8 
+        run: sed -i 's/{docker_user}/${{secrets.DOCKER_USER}}/g' manifests/k8s.yaml
+  
+      - name: update model name in k8 
+        run: sed -i 's/{model_name}/${{secrets.MODEL_NAME}}/g' manifests/k8s.yaml
+  
+      - name: update _ by - 
+        run: sed -i 's/_/-/g' manifests/k8s.yaml
+  
+      - name: update sha in k8
+        run: sed -i 's/{github.sha}/${{github.sha}}/g' manifests/k8s.yaml
+  
+      - name: ls -la 
+        run: cat manifests/k8s.yaml
+      - uses: okteto/context@2.7.0
+        with:
+          token: ${{secrets.OKTETO_TOKEN }}
+  
+      - name: Deploy and Wait
+        uses: okteto/actions/deploy@v1
+        env:
+          KUBECONFIG: ${{ steps.namespace.outputs.kubeconfig }}
+        with:
+          namespace: ${{ secrets.OKTETO_NAMESPACE }}
+          manifest: manifests/k8s.yaml
+          tag: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.MODEL_NAME }}:${{ github.sha }}
+      
+      - run: npm run test-headless    
+      - run: npm run build --if-present
