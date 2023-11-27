@@ -5,7 +5,7 @@ import { Challenge5Component } from './challenge5/challenge5.component';
 
 
 export const routes: Routes = [
-    { path: 'challenge-1-component', component: Challenge1Component },
-    { path: 'challenge-3-component', component: Challenge3Component },
-    { path: 'challenge-5-component', component: Challenge5Component },
+	{ path: 'challenge-1-component', component: Challenge1Component },
+	{ path: 'challenge-3-component', component: Challenge3Component },
+	{ path: 'challenge-5-component', component: Challenge5Component },
 ];

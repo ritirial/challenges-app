@@ -10,74 +10,74 @@ import dataset3JSON from '../../assets/dataset_3_3.json';
 import dataset4JSON from '../../assets/dataset_3_4.json';
 
 @Component({
-  selector: 'app-challenge3',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './challenge3.component.html',
-  styleUrl: './challenge3.component.css'
+	selector: 'app-challenge3',
+	standalone: true,
+	imports: [CommonModule, FormsModule],
+	templateUrl: './challenge3.component.html',
+	styleUrl: './challenge3.component.css'
 })
 export class Challenge3Component {
-  datosX : any;
-  datosY : any;
-  datosK : any;
+	datosX: any;
+	datosY: any;
+	datosK: any;
 
-  resultB0 : any;
-  resultB1 : any;
-  resultYk : any;
-  resultR : any;
-  resultR2 : any;
-  
+	resultB0: any;
+	resultB1: any;
+	resultYk: any;
+	resultR: any;
+	resultR2: any;
 
-  regresion() {
-    let arregloX: number[] = [];
-    let arregloY: number[] = [];
 
-    switch (this.datosX) {
-      case "1":
-        arregloX = dataset3JSON;
-        break;
-      case "2":
-        arregloX = dataset4JSON;
-        break;
-    }
+	regresion() {
+		let arregloX: number[] = [];
+		let arregloY: number[] = [];
 
-    switch (this.datosY) {
-      case "1":
-        arregloY = dataset1JSON;
-        break;
-      case "2":
-        arregloY = dataset2JSON;
-        break;
-    }
+		switch (this.datosX) {
+			case "1":
+				arregloX = dataset3JSON;
+				break;
+			case "2":
+				arregloX = dataset4JSON;
+				break;
+		}
 
-    this.resultB1 = calculateB1(arregloX, arregloY);
-    this.resultB0 = calculateB0(arregloX, arregloY);
-    this.resultYk = calculateYk(arregloX, arregloY, Number(this.datosK));
-  }
+		switch (this.datosY) {
+			case "1":
+				arregloY = dataset1JSON;
+				break;
+			case "2":
+				arregloY = dataset2JSON;
+				break;
+		}
 
-  correlacion() {
-    let arregloX: number[] = [];
-    let arregloY: number[] = [];
+		this.resultB1 = calculateB1(arregloX, arregloY);
+		this.resultB0 = calculateB0(arregloX, arregloY);
+		this.resultYk = calculateYk(arregloX, arregloY, Number(this.datosK));
+	}
 
-    switch (this.datosX) {
-      case "1":
-        arregloX = dataset3JSON;
-        break;
-      case "2":
-        arregloX = dataset4JSON;
-        break;
-    }
+	correlacion() {
+		let arregloX: number[] = [];
+		let arregloY: number[] = [];
 
-    switch (this.datosY) {
-      case "1":
-        arregloY = dataset1JSON;
-        break;
-      case "2":
-        arregloY = dataset2JSON;
-        break;
-    }
+		switch (this.datosX) {
+			case "1":
+				arregloX = dataset3JSON;
+				break;
+			case "2":
+				arregloX = dataset4JSON;
+				break;
+		}
 
-    this.resultR = calculateR(arregloX, arregloY);
-    this.resultR2 = calculateRR(arregloX, arregloY);
-  }
+		switch (this.datosY) {
+			case "1":
+				arregloY = dataset1JSON;
+				break;
+			case "2":
+				arregloY = dataset2JSON;
+				break;
+		}
+
+		this.resultR = calculateR(arregloX, arregloY);
+		this.resultR2 = calculateRR(arregloX, arregloY);
+	}
 }
