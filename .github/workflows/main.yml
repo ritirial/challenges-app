@@ -24,7 +24,7 @@ jobs:
   
       - name: Test
         run: |
-          npm test --no-watch --no-progress --browsers=ChromeHeadlessCI
+          npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
   
       - name: build angular, output in dist/
         run: |
