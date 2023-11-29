@@ -14,11 +14,16 @@ export class LoginComponent {
   correo: any;
   contrasena: any;
 
+  alertaLogin: any;
+
   constructor(private router: Router) { }
 
   iniciarSesion() {
-    if (this.verificarCorreo(this.correo) && this.contrasena.length > 0) {
+    if (this.verificarCorreo(this.correo) && this.contrasena && this.contrasena.length > 0) {
+      this.alertaLogin = "";
       this.router.navigate(['dashboard']);
+    } else {
+      this.alertaLogin = "Datos de usuario incorrectos";
     }
   }
 
