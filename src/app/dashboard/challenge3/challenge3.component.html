@@ -1,0 +1,39 @@
+<h2 class="mb-3">Challenge 3a</h2>
+
+<h4 class="mb-3">Datos</h4>
+
+<div class="mb-3">
+	<label for="datosXSelect" class="form-label">Datos en X</label>
+	<select id="datosXSelect" class="form-control" [(ngModel)]="datosX">
+		<option value="1">[130, 650, 99, 150, 128, 302, 95, 945, 368, 961]</option>
+		<option value="2">[163, 765, 141, 166, 137, 355, 136, 1206, 433, 1130]</option>
+	</select>
+</div>
+
+<div class="mb-3">
+	<label for="datosYSelect" class="form-label">Datos en Y</label>
+	<select id="datosYSelect" class="form-control" [(ngModel)]="datosY">
+		<option value="1">[186, 699, 132, 272, 291, 331, 199, 1890, 788, 1601]</option>
+		<option value="2">[15.0, 69.9, 6.5, 22.4, 28.4, 65.9, 19.4, 198.7, 38.8, 138.2]</option>
+	</select>
+</div>
+
+<div class="mb-3">
+	<label for="datosK" class="form-label">Valor en Xk</label>
+	<input type="number" id="datosK" class="form-control" [(ngModel)]="datosK">
+</div>
+
+<h4 class="mb-3">Operaciones</h4>
+
+<div class="mb-3">
+	<button type="button" id="regresionButton" class="btn btn-outline-dark" (click)="regresion()">Regresión Lineal</button>
+	<p>B1: <span id="resultRegresionB1Element"> {{ resultB1 }}</span></p>
+	<p>B0: <span id="resultRegresionB0Element"> {{ resultB0 }}</span></p>
+	<p>Yk: <span id="resultRegresionYkElement"> {{ resultYk }}</span></p>
+</div>
+
+<div class="mb-3">
+	<button type="button" id="correlacionButton" class="btn btn-outline-dark" type="button" (click)="correlacion()">Correlación</button>
+	<p>R: <span id="resultCorrelacionRElement"> {{ resultR }}</span></p>
+	<p>RR: <span id="resultCorrelacionR2Element"> {{ resultR2 }}</span></p>
+</div>

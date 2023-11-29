@@ -1,0 +1,24 @@
+<h2 class="mb-3">Challenge 1a</h2>
+
+<h4 class="mb-3">Datos</h4>
+
+<div class="mb-3">
+    <label for="datosSelect" class="form-label">Arreglo de datos</label>
+    <select id="datosSelect" class="form-control" [(ngModel)]="datos">
+        <option value="1">[15.0, 69.9, 6.5, 22.4, 28.4, 65.9, 19.4, 198.7, 38.8, 138.2]</option>
+        <option value="2">[160, 591, 114, 229, 230, 270, 128, 1657, 624, 1503]</option>
+    </select>
+</div>
+
+<h4 class="mb-3">Operaciones</h4>
+
+<div class="mb-3">
+    <button id="mediaButton" type="button" class="btn btn-outline-dark me-1" (click)="media()">Media</button>
+    <button id="desvButton" type="button" class="btn btn-outline-dark" (click)="desv()">Desviación Estandar</button>
+</div>
+
+<h4 class="mb-3">Resultados</h4>
+
+<div class="mb-3">
+    <p id="resultElement">{{ result }}</p>
+</div>
