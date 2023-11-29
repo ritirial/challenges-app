@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { media, stddev } from '../commons/operaciones';
+import { media, stddev } from '../../commons/operaciones';
 
-import dataset1JSON from '../../assets/dataset1.json';
-import dataset2JSON from '../../assets/dataset2.json';
+import dataset1JSON from '../../../assets/dataset1.json';
+import dataset2JSON from '../../../assets/dataset2.json';
 
 @Component({
   selector: 'app-challenge1',
@@ -15,8 +15,8 @@ import dataset2JSON from '../../assets/dataset2.json';
   styleUrl: './challenge1.component.css'
 })
 export class Challenge1Component {
+  datos: any = '1';
   result: any;
-  datos: any;
 
   media() {
     let arreglo: number[] = [];
