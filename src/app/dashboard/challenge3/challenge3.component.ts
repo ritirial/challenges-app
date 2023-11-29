@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { calculateB0, calculateB1, calculateR, calculateRR, calculateYk } from '../commons/operaciones';
+import { calculateB0, calculateB1, calculateR, calculateRR, calculateYk } from '../../commons/operaciones';
 
-import dataset1JSON from '../../assets/dataset_3_1.json';
-import dataset2JSON from '../../assets/dataset_3_2.json';
-import dataset3JSON from '../../assets/dataset_3_3.json';
-import dataset4JSON from '../../assets/dataset_3_4.json';
+import dataset1JSON from '../../../assets/dataset_3_1.json';
+import dataset2JSON from '../../../assets/dataset_3_2.json';
+import dataset3JSON from '../../../assets/dataset_3_3.json';
+import dataset4JSON from '../../../assets/dataset_3_4.json';
 
 @Component({
 	selector: 'app-challenge3',
@@ -17,8 +17,8 @@ import dataset4JSON from '../../assets/dataset_3_4.json';
 	styleUrl: './challenge3.component.css'
 })
 export class Challenge3Component {
-	datosX: any;
-	datosY: any;
+	datosX: any = '1';
+	datosY: any = '1';
 	datosK: any;
 
 	resultB0: any;

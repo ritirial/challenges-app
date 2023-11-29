@@ -1,0 +1,50 @@
+<h2 class="mb-3">Challenge 5a</h2>
+
+<h4 class="mb-3">Datos</h4>
+
+<div class="mb-3">
+    <label for="funcionSelect" class="form-label">Función f(x)</label>
+    <select id="funcionSelect" class="form-control" [(ngModel)]="operacion">
+        <option value="1">f(x)=x^2</option>
+        <option value="2">f(x)=2x</option>
+        <option value="3">f(x)=1/x</option>
+    </select>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 mb-3">
+        <label for="x0" class="form-label">Valor x0</label>
+        <input type="number" id="x0" class="form-control" [(ngModel)]="x0">
+    </div>
+    <div class="col-md-6 col-sm-12 mb-3">
+        <label for="x1" class="form-label">Valor x1</label>
+        <input type="number" id="x1" class="form-control" [(ngModel)]="x1">
+    </div>
+
+    <div class="col-md-6 col-sm-12 mb-3">
+        <label for="nSeg" class="form-label">No. de segmentos</label>
+        <input type="number" id="nSeg" class="form-control" [(ngModel)]="nSeg">
+    </div>
+    <div class="col-md-6 col-sm-12 mb-3">
+        <label for="mError" class="form-label">Margen de error</label>
+        <input type="number" id="mError" class="form-control" [(ngModel)]="mError">
+    </div>
+
+    <div class="col-md-6 col-sm-12 mb-3">
+        <label for="dof" class="form-label">Grados de libertad</label>
+        <input type="number" id="dof" class="form-control" [(ngModel)]="dof">
+    </div>
+</div>
+
+<h4 class="mb-3">Operaciones</h4>
+
+<div class="mb-3">
+    <button id="simpsonButton" type="button" class="btn btn-outline-dark me-1" (click)="useSimpson()">Simpson</button>
+    <button id="tButton" type="button" class="btn btn-outline-dark" (click)="useSimpson(true)">Función T</button>
+</div>
+
+<h4 class="mb-3">Resultados</h4>
+
+<div class="mb-3">
+    <p>p: <span id="resultElement"> {{ result }}</span></p>
+</div>

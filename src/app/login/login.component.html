@@ -1,0 +1,19 @@
+<div class="row justify-content-center pt-5">
+    <div class="col-sm-6 p-3 rounded shadow">
+        <h1>Iniciar Sesión</h1>
+
+        <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="text" class="form-control" id="correo" [(ngModel)]="correo">
+        </div>
+
+        <div class="forms-group mt-2">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" class="form-control" id="contrasena" [(ngModel)]="contrasena">
+        </div>
+        
+        <p id="loginAlert" class="text-danger">{{ alertaLogin }}</p>
+
+        <button type="button" id="login" (click)="iniciarSesion()" class="btn btn-primary col-sm-4 mt-3">Iniciar sesión</button>
+    </div>
+</div>
